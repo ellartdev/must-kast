@@ -2,6 +2,8 @@
 
 A kernel I'm writing or trying to write from scratch with some guidance. Must Kast in Estonian means Black Box.
 
+I'm mostly following [Bran's Kernel Development Tutorial](http://www.osdever.net/bkerndev/Docs/title.htm) for guidance.
+
 ## But why?
 
 I got this random spark of interest on writing my own kernel some months ago. While I was doing my military duty, I got bored and thought to myself: "Wouldn't it be cool to try to write the core of an operating system by myself?" so in I went. I started researching about on how to write a kernel, what was required to have before getting into it, etc. Not going to lie, I skipped some necessary parts, quickly got really confused on how some things work, and because of it, I lost the motivation on writing it. So now I'm trying again and writing it on my own from zero with helpful tutorials I can rely on.
