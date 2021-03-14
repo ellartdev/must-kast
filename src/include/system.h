@@ -52,4 +52,16 @@ extern void gdt_install();
 extern void idt_set_gate(uint8 num, uint64 base, uint16 sel, uint8 flags);
 extern void idt_install();
 
+// Interrupt Service Routines
+/* This defines what the stack looks like after an ISR was running */
+struct regs {
+    uint32 gs, fs, es, ds;      /* pushed the segs last */
+    uint32 edi, esi, ebp, esp, ebx, edx, ecx, eax;  /* pushed by 'pusha' */
+    uint32 int_no, err_code;    /* our 'push byte #' and ecodes do this */
+    uint32 eip, cs, eflags, useresp, ss;   /* pushed by the processor automatically */ 
+};
+
+extern void isrs_install();
+extern void fault_handler(struct regs *r);
+
 #endif
