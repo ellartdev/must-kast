@@ -1,4 +1,7 @@
 #!/bin/bash
+exec > ./build.log 2>&1 # Does not output whilst script working
+set -x
+
 # Let's build the kernel
 
 # Check if folders exists
@@ -10,15 +13,19 @@ if [ ! -d "obj" ]; then
 fi
 
 echo "> Assembling..."
-nasm -f elf -o obj/start.o src/start.asm # assemble into object in elf_i386 / x32 format 
+nasm -f elf -o obj/start.o src/asm/start.asm # assemble into object in elf_i386 / x32 format 
+nasm -f elf -o obj/isrs_asm.o src/asm/isrs.asm
+nasm -f elf -o obj/gdt_asm.o src/asm/gdt.asm
+nasm -f elf -o obj/idt_asm.o src/asm/idt.asm
 
 echo "> Compiling..."
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/main.o src/main.c
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/screen.o src/screen.c
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/gdt.o src/gdt.c
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/idt.o src/idt.c
+gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/isrs.o src/isrs.c
 
 echo "> Linking..."
-ld -m elf_i386 -T src/link.ld obj/start.o obj/main.o obj/screen.o obj/gdt.o obj/idt.o -o bin/kernel_must-kast.bin -nostdlib
+ld -m elf_i386 -T src/link.ld obj/start.o obj/main.o obj/screen.o obj/gdt.o obj/idt.o obj/isrs.o obj/gdt_asm.o obj/idt_asm.o obj/isrs_asm.o -o bin/kernel_must-kast.bin -nostdlib
 
 echo "> Script done!"
