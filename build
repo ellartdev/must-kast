@@ -16,8 +16,9 @@ echo "> Compiling..."
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/main.o src/main.c
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/screen.o src/screen.c
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/gdt.o src/gdt.c
+gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/idt.o src/idt.c
 
 echo "> Linking..."
-ld -m elf_i386 -T src/link.ld obj/start.o obj/main.o obj/screen.o obj/gdt.o -o bin/kernel_must-kast.bin -nostdlib
+ld -m elf_i386 -T src/link.ld obj/start.o obj/main.o obj/screen.o obj/gdt.o obj/idt.o -o bin/kernel_must-kast.bin -nostdlib
 
 echo "> Script done!"

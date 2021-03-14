@@ -48,4 +48,8 @@ enum vga_color {
 extern void gdt_set_gate(int num, uint64 base, uint64 limit, uint8 access, uint8 gran);
 extern void gdt_install();
 
+// Interrupt Descriptor Table
+extern void idt_set_gate(uint8 num, uint64 base, uint16 sel, uint8 flags);
+extern void idt_install();
+
 #endif
