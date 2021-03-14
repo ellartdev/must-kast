@@ -44,4 +44,8 @@ enum vga_color {
     WHITE,
 };
 
+// Global Descriptor Table
+extern void gdt_set_gate(int num, uint64 base, uint64 limit, uint8 access, uint8 gran);
+extern void gdt_install();
+
 #endif
