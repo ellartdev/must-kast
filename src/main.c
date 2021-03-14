@@ -69,17 +69,21 @@ void outportb(uint16 _port, uint8 _data)
 int main() {
     /* You would add commands after here */
 
+    // Preparing GDT, IDT, ISRs and installing 'em
     gdt_install(); idt_install(); isrs_install();
 
     init_video(); set_color(WHITE, BLACK);
-    print_string("----------MUST KAST----------\n");
+    print_string("----------MUST KAST----------\n\n");
 
     /**
      * Fault Handler test:
      * Division By Zero Exception
     */
-    int i = 50 / 0;
-    print_ch(i);
+    print_string("* Let's divide 50 by 0, and let's see what happens when we try to print it.\n");
+    print_string("C code what we're going to pass:\n\n");
+
+    set_color(BLUE, BLACK); print_string("int "); set_color(BRIGHT_BLUE, BLACK); print_string("i"); set_color(WHITE, BLACK); print_string(" = "); set_color(BRIGHT_GREEN, BLACK); print_string("50"); set_color(WHITE, BLACK); print_string(" / "); set_color(BRIGHT_GREEN, BLACK); print_string("0"); set_color(WHITE, BLACK); print_string("; "); set_color(YELLOW, BLACK); print_string("print_ch"); set_color(WHITE, BLACK); print_string("("); set_color(BRIGHT_BLUE, BLACK); print_string("i"); set_color(WHITE, BLACK); print_string(");\n");
+    int i = 50 / 0; print_ch(i);
 
     /* ...and leave this loop in. There is an endless loop in
     *  'start.asm' also, if you accidentally delete this next line */
