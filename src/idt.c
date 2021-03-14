@@ -34,8 +34,8 @@ void idt_set_gate(uint8 num, uint64 base, uint16 sel, uint8 flags) {
     *  storing them in idt[num].base_hi and base_lo. The rest of the
     *  fields that you must set in idt[num] are fairly self-
     *  explanatory when it comes to setup */
-    idt[num].base_high = (base & 0xFFFF);
-    idt[num].base_low = (base >> 16) & 0xFFFF;
+    idt[num].base_high = (base >> 16) & 0xFFFF;
+    idt[num].base_low = (base & 0xFFFF);
     idt[num].sel = sel;
     idt[num].flags = flags;
     idt[num].always0 = 0;
