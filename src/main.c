@@ -69,8 +69,17 @@ void outportb(uint16 _port, uint8 _data)
 int main() {
     /* You would add commands after here */
 
-    init_video(); set_color(BRIGHT_CYAN, BLACK);
-    print_string("MUST KAST");
+    gdt_install(); idt_install(); isrs_install();
+
+    init_video(); set_color(WHITE, BLACK);
+    print_string("----------MUST KAST----------\n");
+
+    /**
+     * Fault Handler test:
+     * Division By Zero Exception
+    */
+    int i = 50 / 0;
+    print_ch(i);
 
     /* ...and leave this loop in. There is an endless loop in
     *  'start.asm' also, if you accidentally delete this next line */
