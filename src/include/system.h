@@ -69,6 +69,10 @@ extern void irq_install();
 extern void irq_install_handler(int irq, void (*handler)(struct regs *r));
 extern void irq_uninstall_handler(int irq);
 
+// System Clock
+extern void timer_install();
+extern void timer_wait(int ticks);
+
 // kernel logo
 extern void must_kast_logo();
 
