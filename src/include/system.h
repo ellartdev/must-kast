@@ -64,4 +64,8 @@ struct regs {
 extern void isrs_install();
 extern void fault_handler(struct regs *r);
 
+// kernel logo
+
+extern void must_kast_logo();
+
 #endif

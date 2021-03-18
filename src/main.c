@@ -72,29 +72,7 @@ int main() {
     // Preparing GDT, IDT, ISRs and installing 'em
     gdt_install(); idt_install(); isrs_install();
 
-    init_video(); set_color(WHITE, BLACK);
-
-    // Pretty Must Kast logo
-    set_color(BRIGHT_RED, BLACK); print_string("===============================================================================\n");
-    print_string("|                                                                             |\n");
-    print_string("|       8b    d8 88   88 .dP\"Y8 888888     88  dP    db    .dP\"Y8 888888      |\n");
-    set_color(BRIGHT_MAGENTA, BLACK); print_string("|       88b  d88 88   88 `Ybo.\"   88       88odP    dPYb   `Ybo.\"   88        |\n");
-    set_color(BRIGHT_BLUE, BLACK); print_string("|      88YbdP88 Y8   8P o.`Y8b   88       88\"Yb   dP__Yb  o.`Y8b   88         |\n");
-    set_color(BLUE, BLACK); print_string("|      88 YY 88 `YbodP' 8bodP'   88       88  Yb dP\"\"\"\"Yb 8bodP'   88         |\n");
-    print_string("|                                                                             |\n");
-    print_string("==== made by ellartdev ========================================================\n\n"); set_color(WHITE, BLACK);
-
-    /**
-     * Fault Handler test:
-     * Division By Zero Exception
-    */
-    print_string("* Let's divide 50 by 0, and let's see what happens when we try to print it.\n\n");
-    set_color(GREEN, BLACK);
-    print_string("// C code what we're going to pass:\n");
-
-    set_color(BLUE, BLACK); print_string("int "); set_color(BRIGHT_BLUE, BLACK); print_string("i"); set_color(WHITE, BLACK); print_string(" = "); set_color(BRIGHT_GREEN, BLACK); print_string("50"); set_color(WHITE, BLACK); print_string(" / "); set_color(BRIGHT_GREEN, BLACK); print_string("0"); set_color(WHITE, BLACK); print_string("; "); set_color(YELLOW, BLACK); print_string("print_ch"); set_color(WHITE, BLACK); print_string("("); set_color(BRIGHT_BLUE, BLACK); print_string("i"); set_color(WHITE, BLACK); print_string(");\n\n");
-    set_color(GREEN, BLACK); print_string("// and end result is... (spoiler: should halt the system)\n\n");
-    int i = 50 / 0; print_ch(i);
+    init_video(); must_kast_logo();
 
     /* ...and leave this loop in. There is an endless loop in
     *  'start.asm' also, if you accidentally delete this next line */

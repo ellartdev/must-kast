@@ -2,3 +2,8 @@
 obj/
 bin/
 *.log
+.vscode
+
+# i separated division by zero exception, fault handler tester into separate C file
+src/misc/fault_handler_test.c
+src/include/fault_handler_test.h
