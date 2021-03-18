@@ -70,7 +70,8 @@ int main() {
     /* You would add commands after here */
 
     // Preparing GDT, IDT, ISRs and installing 'em
-    gdt_install(); idt_install(); isrs_install();
+    gdt_install(); idt_install(); isrs_install(); irq_install();
+    __asm__ __volatile__("sti");
 
     init_video(); must_kast_logo();
 
