@@ -28,8 +28,9 @@ gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-funct
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/logo.o src/misc/must_kast_logo.c
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/irq.o src/irq.c
 gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/timer.o src/timer.c
+gcc -fno-pie -m32 -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./src/include -c -o obj/kb.o src/kb.c
 
 echo "> Linking..."
-ld -m elf_i386 -T src/link.ld obj/start.o obj/main.o obj/screen.o obj/gdt.o obj/idt.o obj/isrs.o obj/gdt_asm.o obj/idt_asm.o obj/isrs_asm.o obj/logo.o obj/irq_asm.o obj/irq.o obj/timer.o -o bin/kernel_must-kast.bin -nostdlib
+ld -m elf_i386 -T src/link.ld obj/start.o obj/main.o obj/screen.o obj/gdt.o obj/idt.o obj/isrs.o obj/gdt_asm.o obj/idt_asm.o obj/isrs_asm.o obj/logo.o obj/irq_asm.o obj/irq.o obj/timer.o obj/kb.o -o bin/kernel_must-kast.bin -nostdlib
 
 echo "> Script done!"

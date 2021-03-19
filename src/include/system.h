@@ -73,6 +73,9 @@ extern void irq_uninstall_handler(int irq);
 extern void timer_install();
 extern void timer_wait(int ticks);
 
+// Keyboard
+extern void kb_install();
+
 // kernel logo
 extern void must_kast_logo();
 

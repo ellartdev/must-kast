@@ -70,7 +70,10 @@ int main() {
     __asm__ __volatile__("sti");
 
     init_video();
-    must_kast_logo(); timer_install();
+    must_kast_logo(); //timer_install();
+
+    print_string("Start typin' up :)\n");
+    kb_install(); // this is actually much more responsive than in Mihkelanželo
 
     /* ...and leave this loop in. There is an endless loop in
     *  'start.asm' also, if you accidentally delete this next line */
