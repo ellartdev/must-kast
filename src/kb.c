@@ -18,6 +18,8 @@ void keyboard_handler(struct regs *r) {
         *  hold a key down, you will get repeated key press
         *  interrupts. */
 
+        uint8 key = kbdus[scancode];
+
         /* Just to show you how this works, we simply translate
         *  the keyboard scancode into an ASCII value, and then
         *  display it to the screen. You can get creative and
@@ -26,7 +28,22 @@ void keyboard_handler(struct regs *r) {
         *  to the above layout to correspond to 'shift' being
         *  held. If shift is held using the larger lookup table,
         *  you would add 128 to the scancode when you look for it */
-        print_ch(kbdus[scancode]);
+        print_ch(key);
+        uint8 cur_cmd[128];
+
+        char tmp[] = {key, '\0'};
+
+        if (scancode != 0x1C) // Enter key
+            strcat((char*)cur_cmd, tmp);
+
+        if (key == '\n') {
+            if (strcmp((const char*)cur_cmd, "help") == 0)
+                print_string((uint8*)"I'm helpless like you are, human behind electronic device.\n");
+            else {
+                print_string("You typed: "); print_string(cur_cmd); print_string("\n");
+            }
+            memset(cur_cmd, 0, sizeof cur_cmd);
+        }
     }
 }
 
