@@ -15,6 +15,9 @@ extern int strlen(const char *str);
 extern uint8 inportb(uint16 _port);
 extern void outportb(uint16 _port, uint8 _data);
 
+extern char *strcat(char *dest, const char *src);
+extern int strcmp(const char* s1, const char* s2);
+
 // SCREEN.C
 extern void scroll_screen(void);
 extern void move_cursor(void);
